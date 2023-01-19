@@ -1,0 +1,31 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  background-color: #9c6d8f;
+  padding-left: 60px;
+  padding-right: 50px;
+}
+
+.logo {
+  display: flex;
+  font-family: "Love Ya Like A Sister", cursive;
+  align-items: center;
+}
+
+.logo img {
+  height: 65px;
+  margin-right: 20px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user img {
+  height: 40px;
+  background-color: white;
+  border-radius: 40px;
+  margin-left: 20px;
+}
