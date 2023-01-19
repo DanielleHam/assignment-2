@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sanchez:ital@0;1&display=swap");
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.maintop {
+  background-color: rgb(156, 109, 143);
+  margin-top: 0px;
+  padding: 30px;
+}
+.btn-flat {
+  background-color: rgb(59, 142, 165) !important;
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+}
+.btn-xxl {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+}
+.btn{
+    font-family: "Love Ya Like A Sister", cursive;
+    font-size: 15px;
+}
+hr{
+    margin: 0px;
+    color: gray;
+    width: 2px;
+}
+.customTextInput{
+    border-style: none;
+    margin-right: 20px;
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    font-family: "Love Ya Like A Sister", cursive;
+    outline-style: none;
+}
