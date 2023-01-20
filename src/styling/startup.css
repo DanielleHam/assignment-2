@@ -10,3 +10,32 @@
     display:flex;
     justify-content: center;
 }
+
+.nameContainer {
+   background: white;
+   font-family: "Love Ya Like A Sister", cursive;
+
+}
+
+.nameInput {
+   border: 0;
+}
+
+.signInButton {
+   background-color: #3B8EA5;
+}
+
+.signIn {
+   background: linear-gradient(0deg, white 50%, #9c6d8f 50%);
+   font-family: "Love Ya Like A Sister", cursive;
+
+}
+
+.cloudSVG{
+     position: absolute;
+  top: 137%;
+  left: 33%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 30%;
+  opacity: 1;
+}
