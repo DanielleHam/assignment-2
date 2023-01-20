@@ -13,7 +13,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const users = await getUsers();
-      setUser(users);
+      setUser(users[0]); // for now
       return await users;
     };
 
@@ -28,37 +28,18 @@ const Profile = () => {
           <h3 id="header">Previous translations</h3>
 
           <Container fluid="md" id="translations">
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            {/* will put the input field in a map function later to make it create one for each  */}
+            {user.translations.map((text, index) => (
+              <>
+                <Form.Control
+                  key={index}
+                  type="text"
+                  placeholder="Translated text"
+                  readOnly
+                  value={text}
+                />
+                <br />
+              </>
+            ))}
           </Container>
         </Col>
 
