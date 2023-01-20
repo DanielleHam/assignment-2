@@ -4,9 +4,22 @@ import Col from "react-bootstrap/Col";
 import "../../styling/startup.css";
 import LogoHello from "../../images/HelloCloud.png";
 import Button from "react-bootstrap/Button"
+import Form from 'react-bootstrap/Form';
+import { useState } from "react";
 
 const Startup = () => 
 {
+    const [username, setUsername] = useState({value: ''});
+    const handleUsernameChange = e => {
+        setUsername({value: e.target.value});
+    }
+    const onSubmit = async(e) => 
+    {
+        e.preventDefault();
+        console.log(username.value);
+    }
+   
+
     return (
         <>
             <Container fluid className="bg">
@@ -20,16 +33,23 @@ const Startup = () =>
                 </Row>
                 
             </Container>
-            <Row className="justify-content-center align-items-center signIn">
-                <Col className="col-3">
-                    <Container className="nameContainer d-flex align-items-left rounded-5 shadow">
-                        <input className="nameInput mt-3 mb-3" type="text" placeholder="Enter your name"></input>
-                    </Container>
-                </Col>
-                <Col className="col-2">
-                    <Button className="signInButton p-3 px-5 rounded-5 shadow">Sign in</Button>
-                </Col>
-            </Row>
+            <Form onSubmit={onSubmit}>
+
+                <Row className="justify-content-center align-items-center signIn">
+                        <Col className="col-3">
+                            <Container className="nameContainer d-flex align-items-left rounded-5 shadow">
+                                <label htmlFor="nameInput"></label>
+                                <input className="nameInput mt-3 mb-3" type="text" placeholder="Enter your name" onChange={handleUsernameChange}></input>
+                            </Container>
+                        </Col>
+                        <Col className="col-2">
+                            <Button type="submit" className="signInButton p-3 px-5 rounded-5 shadow">Sign in</Button>
+                        </Col>
+                        
+                    
+                </Row>
+            </Form>
+
         </>
         
     );
