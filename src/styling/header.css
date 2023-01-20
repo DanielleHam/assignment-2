@@ -5,6 +5,7 @@ header {
   background-color: #9c6d8f;
   padding-left: 60px;
   padding-right: 50px;
+  border-bottom: 1px rgba(0, 0, 0, 0.689) solid;
 }
 
 .logo {
