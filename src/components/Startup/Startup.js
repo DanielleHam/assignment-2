@@ -13,6 +13,9 @@ const Startup = () =>
                 <Col>
                 <img src={LogoHello} alt="Logo hello" />
                 </Col>
+                <Col>
+                    <h1>Welcome<br />to<br />Lost in translation</h1>
+                </Col>
             </Row>
         </Container>
     );
