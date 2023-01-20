@@ -1,10 +1,19 @@
 import Container from "react-bootstrap/Container";
-import "../../styling/startup.css"
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "../../styling/startup.css";
+import LogoHello from "../../images/Logo-Hello.png";
+
+
 const Startup = () => 
 {
     return (
         <Container fluid className="bg">
-            <p>Hello</p>
+            <Row className="welcome align-items-center mt-5 mb-5">
+                <Col>
+                <img src={LogoHello} alt="Logo hello" />
+                </Col>
+            </Row>
         </Container>
     );
 }

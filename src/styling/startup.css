@@ -4,3 +4,9 @@
     justify-content: center;
     border-top: thin solid black;
  }
+
+ .welcome {
+    font-family: "Love Ya Like A Sister", cursive;
+    display:flex;
+    justify-content: center;
+}
