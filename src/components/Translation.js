@@ -11,6 +11,9 @@ function Translation() {
         <Button variant="flat" size = "xxl">Translate</Button>{' '}
       </div>
       <div className ="container">
+        <div className="imageContainer">
+
+        </div>
         {/* put images here */}
       </div>
       </>
