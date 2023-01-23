@@ -4,22 +4,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { getUsers } from "../api/apiCalls";
-import { useEffect, useState } from "react";
+
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 const Profile = () => {
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const users = await getUsers();
-      setUser(users[0]); // for now
-      return await users;
-    };
-
-    fetchUser();
-  }, []);
-  console.log(user);
+  const { user } = useContext(UserContext);
 
   return (
     <Container fluid>
