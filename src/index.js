@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Startup from "./components/Startup/Startup";
 import { UserProvider } from "./UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Translation from "./components/Translation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Routes>
           <Route path="/" element={<Startup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/translation" element={<Translation />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>
