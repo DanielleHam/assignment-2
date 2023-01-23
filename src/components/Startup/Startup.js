@@ -6,6 +6,8 @@ import LogoHello from "../../images/HelloCloud.png";
 import Button from "react-bootstrap/Button"
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
+import { getOneUser } from "../../api/apiCalls";
+import { postApiData } from "../../api/protectedAPI";
 
 const Startup = () => 
 {
@@ -16,7 +18,22 @@ const Startup = () =>
     const onSubmit = async(e) => 
     {
         e.preventDefault();
-        console.log(username.value);
+        let user = await getOneUser(username.value);
+        if(user.length > 1)
+            throw new Error("Two users have the same name");
+        if(user.length !== 0)
+        {
+            console.log(user[0].username);
+            // login 
+            return;
+        }
+        console.log("try post");
+        postApiData("", {
+            username: username.value,
+            translations: []
+        });
+        
+        //login
     }
    
 
