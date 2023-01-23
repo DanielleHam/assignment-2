@@ -4,22 +4,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { getUsers } from "../api/apiCalls";
-import { useEffect, useState } from "react";
+
+import { useContext } from "react";
+import UserContext from "../UserContext";
 
 const Profile = () => {
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const users = await getUsers();
-      setUser(users);
-      return await users;
-    };
-
-    fetchUser();
-  }, []);
-  console.log(user);
+  const { user } = useContext(UserContext);
 
   return (
     <Container fluid>
@@ -28,37 +18,18 @@ const Profile = () => {
           <h3 id="header">Previous translations</h3>
 
           <Container fluid="md" id="translations">
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            <br />
-
-            <Form.Control type="text" placeholder="Translated text" readOnly />
-            {/* will put the input field in a map function later to make it create one for each  */}
+            {user.translations.map((text, index) => (
+              <>
+                <Form.Control
+                  key={index}
+                  type="text"
+                  placeholder="Translated text"
+                  readOnly
+                  value={text}
+                />
+                <br />
+              </>
+            ))}
           </Container>
         </Col>
 
