@@ -62,7 +62,7 @@ const Startup = () =>
                         <Col className="col-3">
                             <Container className="nameContainer d-flex align-items-left rounded-5 shadow">
                                 <label htmlFor="nameInput"></label>
-                                <input className="nameInput mt-3 mb-3" type="text" placeholder="Enter your name" onChange={handleUsernameChange}></input>
+                                <input className="nameInput form-control border-0 mt-3 mb-3" type="text" placeholder="Enter your name" onChange={handleUsernameChange}></input>
                             </Container>
                         </Col>
                         <Col className="col-2">
