@@ -2,7 +2,7 @@
 export const apiFetch = async (endpoint, options) => {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}${endpoint}`,
+      `${process.env.REACT_APP_API_URL}/${endpoint}`,
       {
         ...options,
         headers: {
