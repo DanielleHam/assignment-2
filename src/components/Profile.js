@@ -5,11 +5,25 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../UserContext";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
+  const { addUser } = useContext(UserContext);
+
+  const [translations, setTranslations] = useState(
+    user.translations.slice(-10)
+  );
+
+  const remove = () => {
+    setTranslations([]);
+  };
+
+  const logOut = () => {
+    addUser([]);
+    window.location.href = "/";
+  };
 
   return (
     <Container fluid>
@@ -18,26 +32,27 @@ const Profile = () => {
           <h3 id="header">Previous translations</h3>
 
           <Container fluid="md" id="translations">
-            {user.translations.map((text, index) => (
-              <>
-                <Form.Control
-                  key={index}
-                  type="text"
-                  placeholder="Translated text"
-                  readOnly
-                  value={text}
-                />
-                <br />
-              </>
-            ))}
+            {user.translations
+              ? translations.map((text, index) => (
+                  <span key={index}>
+                    <Form.Control
+                      type="text"
+                      placeholder="Translated text"
+                      readOnly
+                      value={text}
+                    />
+                    <br />
+                  </span>
+                ))
+              : ""}
           </Container>
         </Col>
 
         <Col xs lg="4" id="buttonsContainer">
-          <Button size="lg" className="button" id="del">
+          <Button size="lg" className="button" id="del" onClick={remove}>
             Delete
           </Button>
-          <Button size="lg" className="button" id="log">
+          <Button size="lg" className="button" id="log" onClick={logOut}>
             Log out
           </Button>
         </Col>
