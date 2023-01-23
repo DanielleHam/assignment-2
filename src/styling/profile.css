@@ -1,0 +1,43 @@
+.previousTranslation {
+  background-color: #9c6d8f;
+  text-align: center;
+  padding-top: 30px;
+  height: 100vh !important;
+}
+
+#header {
+  font-family: "Love Ya Like A Sister", cursive;
+  margin-bottom: 20px;
+}
+
+#translations {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 40px;
+}
+
+.textField {
+  margin-bottom: 5xp !important;
+}
+
+#buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.button {
+  color: black !important;
+  padding: 1rem 1.5rem !important;
+  font-size: 1.5rem !important;
+  border: none !important;
+}
+
+#del {
+  background-color: #b80f0a !important;
+}
+
+#log {
+  background-color: #3b8ea5 !important;
+}
