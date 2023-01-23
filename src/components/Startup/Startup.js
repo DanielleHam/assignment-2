@@ -5,7 +5,7 @@ import "../../styling/startup.css";
 import LogoHello from "../../images/HelloCloud.png";
 import Button from "react-bootstrap/Button"
 import Form from 'react-bootstrap/Form';
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getOneUser } from "../../api/apiCalls";
 import { postApiData } from "../../api/protectedAPI";
 import UserContext, {useUserContext} from "../../UserContext"
@@ -16,6 +16,13 @@ const Startup = () =>
     const navigate = useNavigate();
     const [username, setUsername] = useState({value: ''});
     const {user, addUser} = useContext(UserContext);
+
+
+    useEffect(() => {
+        if(Object.keys(user).length !== 0)
+            navigate("/translation");
+    }, [])
+
 
     const handleUsernameChange = e => {
         setUsername({value: e.target.value});
@@ -33,7 +40,6 @@ const Startup = () =>
             navigate("/translation");
             return;
         }
-        console.log("try post");
         let createdUser = await postApiData("", {
             username: username.value,
             translations: []
