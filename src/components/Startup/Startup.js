@@ -6,16 +6,15 @@ import LogoHello from "../../images/HelloCloud.png";
 import Button from "react-bootstrap/Button"
 import Form from 'react-bootstrap/Form';
 import { useContext, useEffect, useState } from "react";
-import { getOneUser } from "../../api/apiCalls";
-import { postApiData } from "../../api/protectedAPI";
-import UserContext, {useUserContext} from "../../UserContext"
+import { getOneUser, addUser } from "../../api/apiCalls";
+import UserContext from "../../UserContext"
 import {useNavigate} from "react-router-dom"
 
 const Startup = () => 
 {
     const navigate = useNavigate();
     const [username, setUsername] = useState({value: ''});
-    const {user, addUser} = useContext(UserContext);
+    const {user, updateUserContext} = useContext(UserContext);
 
 
     useEffect(() => {
@@ -36,15 +35,15 @@ const Startup = () =>
             throw new Error("Two users have the same name");
         if(fetchedUser.length !== 0)
         {
-            addUser(fetchedUser[0]);
+            updateUserContext(fetchedUser[0]);
             navigate("/translation");
             return;
         }
-        let createdUser = await postApiData("", {
+        let createdUser = await addUser({
             username: username.value,
             translations: []
         });
-        addUser(createdUser)
+        updateUserContext(createdUser)
         navigate("/translation");
     }
    
