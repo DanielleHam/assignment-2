@@ -51,6 +51,9 @@ const Translation = () => {
     });
     return list;
   }
+  const handleEnterPress = (event) => {
+    console.log(event.key);
+  };
 
   return (
     <>
@@ -61,6 +64,12 @@ const Translation = () => {
             className="customTextInput d-flex align-items-left rounded-5 shadow"
             placeholder="what do you want to say?"
             onChange={(e) => setTransInput(e.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                console.log("enter");
+                translateTextFunction();
+              }
+            }}
           />
           <Button
             variant="flat d-flex align-items-left rounded-5 shadow"
@@ -75,7 +84,7 @@ const Translation = () => {
         {/* put images here */}
         {imageArray}
         <div className="bottomColor">
-          <text>{varningText}</text>
+          <>{varningText}</>
         </div>
       </div>
     </>
