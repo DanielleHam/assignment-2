@@ -15,9 +15,13 @@ const Header = () => {
     navigate("/profile");
   };
 
+  const toTranslate = () => {
+    navigate("/translation");
+  };
+
   return (
     <header>
-      <div className="logo">
+      <div className="logo" onClick={toTranslate}>
         <img src={Logo} alt="Robot logo" />
         <h1>Lost in translation</h1>
       </div>
