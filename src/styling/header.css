@@ -19,9 +19,18 @@ header {
   margin-right: 20px;
 }
 
+.logo h1 {
+  margin: 0;
+}
+
 .user {
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.user p {
+  margin: 0;
 }
 
 .user img {

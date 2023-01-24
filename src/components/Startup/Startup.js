@@ -5,35 +5,47 @@ import "../../styling/startup.css";
 import LogoHello from "../../images/HelloCloud.png";
 import Button from "react-bootstrap/Button"
 import Form from 'react-bootstrap/Form';
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getOneUser } from "../../api/apiCalls";
 import { postApiData } from "../../api/protectedAPI";
+import UserContext, {useUserContext} from "../../UserContext"
+import {useNavigate} from "react-router-dom"
 
 const Startup = () => 
 {
+    const navigate = useNavigate();
     const [username, setUsername] = useState({value: ''});
+    const {user, addUser} = useContext(UserContext);
+
+
+    useEffect(() => {
+        if(Object.keys(user).length !== 0)
+            navigate("/translation");
+    }, [])
+
+
     const handleUsernameChange = e => {
         setUsername({value: e.target.value});
     }
+
     const onSubmit = async(e) => 
     {
         e.preventDefault();
-        let user = await getOneUser(username.value);
-        if(user.length > 1)
+        let fetchedUser = await getOneUser(username.value);
+        if(fetchedUser.length > 1)
             throw new Error("Two users have the same name");
-        if(user.length !== 0)
+        if(fetchedUser.length !== 0)
         {
-            console.log(user[0].username);
-            // login 
+            addUser(fetchedUser[0]);
+            navigate("/translation");
             return;
         }
-        console.log("try post");
-        postApiData("", {
+        let createdUser = await postApiData("", {
             username: username.value,
             translations: []
         });
-        
-        //login
+        addUser(createdUser)
+        navigate("/translation");
     }
    
 
@@ -56,7 +68,7 @@ const Startup = () =>
                         <Col className="col-3">
                             <Container className="nameContainer d-flex align-items-left rounded-5 shadow">
                                 <label htmlFor="nameInput"></label>
-                                <input className="nameInput mt-3 mb-3" type="text" placeholder="Enter your name" onChange={handleUsernameChange}></input>
+                                <input className="nameInput form-control border-0 mt-3 mb-3" type="text" placeholder="Enter your name" onChange={handleUsernameChange}></input>
                             </Container>
                         </Col>
                         <Col className="col-2">
