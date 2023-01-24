@@ -1,17 +1,26 @@
 import "../styling/Translation.css";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { updateUser } from "./../api/apiCalls";
 
 import { useContext } from "react";
 import UserContext from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Translation = () => {
+  const navigate = useNavigate();
   const { user, updateUserContext } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
   const [imageArray, setImageArray] = useState([]);
   const [varningText, setVarningText] = useState();
   //breaks the string down for image convertion
+
+  useEffect(() => {
+    if (!user.username) {
+      navigate("/");
+    }
+  });
+
   const translateTextFunction = () => {
     setImageArray([]);
     const inputTextArray = Array.from(translationInput);
@@ -39,6 +48,7 @@ const Translation = () => {
               letter.toLowerCase() +
               ".png")}
             title={letter}
+            alt="letterimage"
           />
         );
       } else if (letter === " ") {
