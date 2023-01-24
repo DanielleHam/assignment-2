@@ -20,7 +20,7 @@ const Translation = () => {
 
     const copyUser = { ...user };
     copyUser.translations.push(translationInput);
-    addUser(copyUser);
+    updateUserContext(copyUser);
 
     updateUser(user.id, { translations: user.translations });
   };
@@ -35,7 +35,9 @@ const Translation = () => {
           <img
             key={letter + index}
             className="image"
-            src={require("../images/handsigns/" + letter + ".png")}
+            src={require("../images/handsigns/" +
+              letter.toLowerCase() +
+              ".png")}
             title={letter}
           />
         );
