@@ -9,12 +9,14 @@ import UserContext from "../UserContext";
 const Translation = () => {
   const { user, addUser } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
-  const [result, setResult] = useState("");
+  const [imageArray, setImageArray] = useState([]);
+  const [varningText, setVarningText] = useState();
   //breaks the string down for image convertion
   const translateTextFunction = () => {
-    setResult(translationInput);
+    setImageArray([]);
     const inputTextArray = Array.from(translationInput);
-    inputTextArray.forEach(handleTranslateLetters);
+
+    setImageArray(handleTranslateLetters(inputTextArray));
 
     const copyUser = { ...user };
     copyUser.translations.push(translationInput);
@@ -23,10 +25,32 @@ const Translation = () => {
     updateUser(user.id, { translations: user.translations });
   };
 
-  function handleTranslateLetters(letter, index) {
-    /* get the images for each letter here */
-    console.log("element: " + letter + " i: " + index);
+  function handleTranslateLetters(letterarray) {
+    const list = [];
+    setVarningText("");
+    const regLetter = /^[a-zA-Z]+$/;
+    letterarray.forEach((letter, index) => {
+      if (letter.match(regLetter)) {
+        list.push(
+          <img
+            key={letter + index}
+            className="image"
+            src={require("../images/handsigns/" + letter + ".png")}
+          />
+        );
+      } else if (letter === " ") {
+        list.push(
+          <p key={letter + index} className="hiddenText">
+            space
+          </p>
+        );
+      } else {
+        setVarningText("Only translates letters");
+      }
+    });
+    return list;
   }
+
   return (
     <>
       <div className="maintop">
@@ -48,7 +72,10 @@ const Translation = () => {
       </div>
       <div className="imageContainer d-flex align-items-left rounded-5 shadow">
         {/* put images here */}
-        {result}
+        {imageArray}
+        <div className="bottomColor">
+          <text>{varningText}</text>
+        </div>
       </div>
     </>
   );
