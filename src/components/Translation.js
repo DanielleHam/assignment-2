@@ -7,7 +7,7 @@ import { useContext } from "react";
 import UserContext from "../UserContext";
 
 const Translation = () => {
-  const { user, addUser } = useContext(UserContext);
+  const { user, updateUserContext } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
   const [imageArray, setImageArray] = useState([]);
   const [varningText, setVarningText] = useState();
