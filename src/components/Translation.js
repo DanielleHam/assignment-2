@@ -6,69 +6,41 @@ import { updateUser } from "./../api/apiCalls";
 import { useContext } from "react";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
+import TranslationBox from "./TranslationBox";
 
 const Translation = () => {
   const navigate = useNavigate();
   const { user, updateUserContext } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
-  const [imageArray, setImageArray] = useState([]);
-  const [varningText, setVarningText] = useState();
-  //breaks the string down for image convertion
+  const [finalInput, setFinalInput] = useState("");
 
+  //return to startPage if user is not logged in
   useEffect(() => {
     if (!user.username) {
       navigate("/");
     }
   });
 
+  //Produce an image for each letter in the input and update database if the translation if unique
   const translateTextFunction = () => {
-    setImageArray([]);
+    let checkIfTranslationExist = false;
     const inputTextArray = Array.from(translationInput);
-
-    setImageArray(handleTranslateLetters(inputTextArray));
+    setFinalInput(translationInput);
 
     const copyUser = { ...user };
-    copyUser.translations.push(translationInput);
-    updateUserContext(copyUser);
-
-    updateUser(user.id, { translations: user.translations });
-  };
-
-  function handleTranslateLetters(letterarray) {
-    const list = [];
-    setVarningText("");
-    const regLetter = /^[a-zA-Z]+$/;
-    letterarray.forEach((letter, index) => {
-      if (letter.match(regLetter)) {
-        list.push(
-          <img
-            key={letter + index}
-            className="image"
-            src={require("../images/handsigns/" +
-              letter.toLowerCase() +
-              ".png")}
-            title={letter}
-            alt="letterimage"
-          />
-        );
-      } else if (letter === " ") {
-        list.push(
-          <p key={letter + index} className="hiddenText">
-            space
-          </p>
-        );
-      } else {
-        setVarningText("Only translates letters");
+    copyUser.translations.forEach((translationItem) => {
+      if (translationItem === translationInput) {
+        checkIfTranslationExist = true;
       }
     });
-    return list;
-  }
-  const handleEnterPress = (event) => {
-    console.log(event.key);
+    if (!checkIfTranslationExist) {
+      copyUser.translations.push(translationInput);
+    }
+    updateUserContext(copyUser);
+    updateUser(user.id, { translations: user.translations });
   };
-
   return (
-    <>
+    <main>
       <div className="maintop">
         <div className="container">
           <input
@@ -78,7 +50,6 @@ const Translation = () => {
             onChange={(e) => setTransInput(e.target.value)}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
-                console.log("enter");
                 translateTextFunction();
               }
             }}
@@ -92,14 +63,8 @@ const Translation = () => {
           </Button>{" "}
         </div>
       </div>
-      <div className="imageContainer d-flex align-items-left rounded-5 shadow">
-        {/* put images here */}
-        {imageArray}
-        <div className="bottomColor">
-          <>{varningText}</>
-        </div>
-      </div>
-    </>
+      <TranslationBox textInput={finalInput} />
+    </main>
   );
 };
 export default Translation;
