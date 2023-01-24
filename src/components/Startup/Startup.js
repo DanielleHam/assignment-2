@@ -16,11 +16,20 @@ const Startup = () =>
     const [username, setUsername] = useState({value: ''});
     const {user, updateUserContext} = useContext(UserContext);
 
+    const getStorageValue = () => 
+    {
+        const saved = localStorage.getItem("user");
+        const initial = JSON.parse(saved);
+        return initial || {};
+    }
 
     useEffect(() => {
+        updateUserContext(getStorageValue());
+
         if(Object.keys(user).length !== 0)
             navigate("/translation");
-    }, [])
+    })
+
 
 
     const handleUsernameChange = e => {
@@ -36,6 +45,8 @@ const Startup = () =>
         if(fetchedUser.length !== 0)
         {
             updateUserContext(fetchedUser[0]);
+            localStorage.setItem("user", JSON.stringify(fetchedUser[0]));
+
             navigate("/translation");
             return;
         }
@@ -44,6 +55,7 @@ const Startup = () =>
             translations: []
         });
         updateUserContext(createdUser)
+        localStorage.setItem("user", JSON.stringify(createdUser));
         navigate("/translation");
     }
    
