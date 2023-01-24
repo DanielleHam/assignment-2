@@ -36,6 +36,7 @@ const Translation = () => {
             key={letter + index}
             className="image"
             src={require("../images/handsigns/" + letter + ".png")}
+            title={letter}
           />
         );
       } else if (letter === " ") {
