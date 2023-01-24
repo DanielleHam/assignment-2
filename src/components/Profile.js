@@ -12,7 +12,7 @@ import UserContext from "../UserContext";
 const Profile = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { addUser } = useContext(UserContext);
+  const { updateUserContext } = useContext(UserContext);
 
   const [translations, setTranslations] = useState([]);
 
@@ -29,7 +29,8 @@ const Profile = () => {
   };
 
   const logOut = () => {
-    addUser([]);
+    updateUserContext([]);
+    localStorage.clear();
     window.location.href = "/";
   };
 
