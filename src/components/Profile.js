@@ -4,24 +4,33 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { addUser } = useContext(UserContext);
+  const { updateUserContext } = useContext(UserContext);
 
-  const [translations, setTranslations] = useState(
-    user.translations.slice(-10)
-  );
+  const [translations, setTranslations] = useState([]);
+
+  useEffect(() => {
+    if (!user.username) {
+      navigate("/");
+    } else {
+      setTranslations(user.translations.slice(-10));
+    }
+  }, []);
 
   const remove = () => {
     setTranslations([]);
   };
 
   const logOut = () => {
-    addUser([]);
+    updateUserContext([]);
+    localStorage.clear();
     window.location.href = "/";
   };
 

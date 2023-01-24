@@ -3,13 +3,16 @@ import Logo from "../images/Logo.png";
 import Profile from "../images/profile_icon.png";
 import "../styling/header.css";
 import UserContext from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
   console.log(user, "user");
 
   const toProfile = () => {
-    window.location = "/profile";
+    navigate("/profile");
   };
 
   return (
