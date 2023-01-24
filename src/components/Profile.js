@@ -4,8 +4,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "./../api/apiCalls";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext";
 
@@ -23,9 +24,21 @@ const Profile = () => {
       setTranslations(user.translations.slice(-10));
     }
   }, []);
+  console.log("first", translations);
 
   const remove = () => {
     setTranslations([]);
+    if (translations.length < 10) {
+      console.log("du har färre än 10");
+      updateUser(user.id, { translations: [] });
+    } else {
+      console.log("du har fler än 10");
+      let allTranslations = [...user.translations];
+      allTranslations.splice(-10);
+      setTranslations(allTranslations.slice(-10));
+
+      updateUser(user.id, { translations: allTranslations });
+    }
   };
 
   const logOut = () => {
