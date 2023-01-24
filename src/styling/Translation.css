@@ -17,7 +17,6 @@
   background-color: rgb(59, 142, 165) !important;
   color: rgb(0, 0, 0);
   border-radius: 20px;
-  
 }
 .btn-xxl {
   padding: 1rem 1.5rem;
@@ -27,10 +26,8 @@
   font-family: "Love Ya Like A Sister", cursive;
   font-size: 15px;
   margin-left: 20px;
-  
 }
 .customTextInput {
-  
   border-right: 4px;
   border-bottom: 3px;
   border-top: 0px;
@@ -43,9 +40,20 @@
   font-family: "Love Ya Like A Sister", cursive;
   outline-style: none;
 }
-.container{
+.container {
   display: flex;
   justify-content: center;
+}
+.bottomColor {
+  font-family: "Love Ya Like A Sister", cursive;
+  background: rgb(59, 142, 165);
+  align-self: end;
+  width: -webkit-fill-available;
+  border-radius: 0 0 40px 40px;
+  min-height: 30px;
+  margin: -20px;
+  justify-content: center;
+  text-align: center;
 }
 .imageContainer {
   border-right: 0px;
@@ -62,8 +70,15 @@
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  
+
   background-color: #f5f5f5;
   display: flex;
   flex-wrap: wrap;
+}
+.image {
+  width: 100px;
+  height: 100px;
+}
+.hiddenText {
+  opacity: 0;
 }
