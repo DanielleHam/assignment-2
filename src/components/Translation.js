@@ -24,7 +24,6 @@ const Translation = () => {
   //Produce an image for each letter in the input and update database if the translation if unique
   const translateTextFunction = () => {
     let checkIfTranslationExist = false;
-    const inputTextArray = Array.from(translationInput);
     setFinalInput(translationInput);
 
     const copyUser = { ...user };
@@ -37,6 +36,7 @@ const Translation = () => {
       copyUser.translations.push(translationInput);
     }
     updateUserContext(copyUser);
+    localStorage.setItem("user", JSON.stringify(copyUser));
     updateUser(user.id, { translations: user.translations });
   };
   return (

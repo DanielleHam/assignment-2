@@ -2,12 +2,13 @@ import "../styling/profile.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "./../api/apiCalls";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext";
+import ListTranslation from "./ListTranslation";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -25,7 +26,22 @@ const Profile = () => {
   }, []);
 
   const remove = () => {
-    setTranslations([]);
+    let copyUser = { ...user };
+    if (translations.length < 10) {
+      updateUser(user.id, { translations: [] });
+      setTranslations([]);
+      copyUser.translations = [];
+      updateUserContext(copyUser);
+      localStorage.setItem("user", JSON.stringify(copyUser));
+    } else {
+      let allTranslations = [...user.translations];
+      allTranslations.splice(-10);
+      setTranslations(allTranslations.slice(-10));
+      copyUser.translations = allTranslations;
+      updateUserContext(copyUser);
+      localStorage.setItem("user", JSON.stringify(copyUser));
+      updateUser(user.id, { translations: allTranslations });
+    }
   };
 
   const logOut = () => {
@@ -39,22 +55,7 @@ const Profile = () => {
       <Row>
         <Col className="previousTranslation">
           <h3 id="header">Previous translations</h3>
-
-          <Container fluid="md" id="translations">
-            {user.translations
-              ? translations.map((text, index) => (
-                  <span key={index}>
-                    <Form.Control
-                      type="text"
-                      placeholder="Translated text"
-                      readOnly
-                      value={text}
-                    />
-                    <br />
-                  </span>
-                ))
-              : ""}
-          </Container>
+          <ListTranslation texts={translations} />
         </Col>
 
         <Col xs lg="4" id="buttonsContainer">
