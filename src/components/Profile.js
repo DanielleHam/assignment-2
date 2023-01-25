@@ -24,16 +24,22 @@ const Profile = () => {
       setTranslations(user.translations.slice(-10));
     }
   }, []);
-  console.log("first", translations);
 
   const remove = () => {
-    setTranslations([]);
+    let copyUser = { ...user };
     if (translations.length < 10) {
       updateUser(user.id, { translations: [] });
+      setTranslations([]);
+      copyUser.translations = [];
+      updateUserContext(copyUser);
+      localStorage.setItem("user", JSON.stringify(copyUser));
     } else {
       let allTranslations = [...user.translations];
       allTranslations.splice(-10);
       setTranslations(allTranslations.slice(-10));
+      copyUser.translations = allTranslations;
+      updateUserContext(copyUser);
+      localStorage.setItem("user", JSON.stringify(copyUser));
       updateUser(user.id, { translations: allTranslations });
     }
   };
