@@ -6,6 +6,8 @@ Lost in translation is a page for translation words into sign language.
 
 To run the project, Node.js must be installed to gain access to npm. Navigate to the root of the project using a terminal, and run the command npm start, and the website will launch at localhost:3000. 
 
+A deployed version of the project can be found [here](https://assignment-2-tau.vercel.app/)
+
 ## Landing Page
 <img align="left" width=450 src="https://i.imgur.com/MBJj3of.png"> On the landing page, the user is asked to sign into an account by entering a name. If an account by the name exists, they're logged into it, and if an account does not exists a new one is created. 
 <br>
