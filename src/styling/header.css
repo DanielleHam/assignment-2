@@ -12,6 +12,7 @@ header {
   display: flex;
   font-family: "Love Ya Like A Sister", cursive;
   align-items: center;
+  cursor: pointer;
 }
 
 .logo img {

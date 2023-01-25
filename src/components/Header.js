@@ -9,8 +9,6 @@ const Header = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log(user, "user");
-
   const toProfile = () => {
     navigate("/profile");
   };
