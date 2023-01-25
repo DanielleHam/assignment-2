@@ -18,7 +18,7 @@ const TranslationBox = ({ textInput }) => {
           <img
             key={letter + index}
             className="image"
-            src={require("../images/handsigns/" +
+            src={require("../images/handSigns/" +
               letter.toLowerCase() +
               ".png")}
             title={letter}

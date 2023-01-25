@@ -37,6 +37,7 @@ const Translation = () => {
       copyUser.translations.push(translationInput);
     }
     updateUserContext(copyUser);
+    localStorage.setItem("user", JSON.stringify(copyUser));
     updateUser(user.id, { translations: user.translations });
   };
   return (
