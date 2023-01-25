@@ -18,9 +18,11 @@ const Profile = () => {
   const [translations, setTranslations] = useState([]);
 
   useEffect(() => {
+    //return to startPage if user is not logged in
     if (!user.username) {
       navigate("/");
     } else {
+      // if logged in show only the last 10 translations
       setTranslations(user.translations.slice(-10));
     }
   }, []);
@@ -34,6 +36,7 @@ const Profile = () => {
       updateUserContext(copyUser);
       localStorage.setItem("user", JSON.stringify(copyUser));
     } else {
+      // remove the last 10 translations from the translations array
       let allTranslations = [...user.translations];
       allTranslations.splice(-10);
       setTranslations(allTranslations.slice(-10));
@@ -43,7 +46,7 @@ const Profile = () => {
       updateUser(user.id, { translations: allTranslations });
     }
   };
-
+  // when user log's out, remove stored info
   const logOut = () => {
     updateUserContext([]);
     localStorage.clear();
