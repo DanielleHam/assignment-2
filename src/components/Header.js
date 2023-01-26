@@ -25,13 +25,11 @@ const Header = () => {
       </div>
 
       <div className="user" onClick={toProfile}>
-        {user.username ? (
+        {user.id && (
           <>
             <p>{user.username}</p>
             <img src={Profile} alt="Profile logo" />
           </>
-        ) : (
-          ""
         )}
       </div>
     </header>

@@ -1,17 +1,15 @@
 import "../styling/Translation.css";
 import Button from "react-bootstrap/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateUser } from "./../api/apiCalls";
 
 import { useContext } from "react";
 import UserContext from "../UserContext";
-import { useNavigate } from "react-router-dom";
 import TranslationBox from "./TranslationBox";
 
 import withAuth from "../hoc/withAuth";
 
 const Translation = () => {
-  const navigate = useNavigate();
   const { user, updateUserContext } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
   const [finalInput, setFinalInput] = useState("");
@@ -58,7 +56,6 @@ const Translation = () => {
       let fixedInput = removeSpaceSpam(translationInput);
 
       if (!regLetter.test(fixedInput)) {
-        console.log("entered test");
         setFinalInput("");
         setWarning("Enter more than just space");
         checkIfTranslationExist = true;

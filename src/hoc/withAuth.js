@@ -3,8 +3,8 @@ import { useUser } from "../UserContext";
 
 const withAuth = (Component) => (props) => {
   const { user } = useUser();
-  console.log("with aout", user);
-  if (user !== null) {
+
+  if (user.username) {
     return <Component {...props} />;
   } else {
     return <Navigate to="/" />;
