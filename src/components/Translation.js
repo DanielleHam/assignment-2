@@ -14,15 +14,16 @@ const Translation = () => {
   const [translationInput, setTransInput] = useState("");
   const [finalInput, setFinalInput] = useState("");
   const [warning, setWarning] = useState("");
-  const [fixedInput, setFixedInput] = useState("");
 
   //return to startPage if user is not logged in
+
   useEffect(() => {
     if (!user.username) {
       navigate("/");
     }
   });
 
+  //removes all unnecessary spaces in the input
   const removeSpaceSpam = (inputString) => {
     let previousLetter = "";
     let fixedInputWithoutSpaceSpam = [];
@@ -60,9 +61,9 @@ const Translation = () => {
       //setFixedInput(removeSpaceSpam(translationInput));
       //if we don't want to save same translation with more space
 
-      let fix = removeSpaceSpam(translationInput);
+      let fixedInput = removeSpaceSpam(translationInput);
 
-      if (!regLetter.test(fix)) {
+      if (!regLetter.test(fixedInput)) {
         console.log("entered test");
         setFinalInput("");
         setWarning("Enter more than just space");
@@ -73,13 +74,13 @@ const Translation = () => {
 
       const copyUser = { ...user };
       copyUser.translations.forEach((translationItem) => {
-        if (translationItem === fix) {
+        if (translationItem === fixedInput) {
           checkIfTranslationExist = true;
         }
       });
 
       if (!checkIfTranslationExist) {
-        copyUser.translations.push(fix);
+        copyUser.translations.push(fixedInput);
       }
       updateUserContext(copyUser);
       localStorage.setItem("user", JSON.stringify(copyUser));
