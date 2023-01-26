@@ -1,40 +1,48 @@
 .bg {
-    background-color: #9c6d8f;
-    display: flex;
-    justify-content: center;
- }
+  background-color: #9c6d8f;
+  display: flex;
+  justify-content: center;
+}
 
- .welcome {
-    font-family: "Love Ya Like A Sister", cursive;
-    display:flex;
-    justify-content: center;
+.welcome {
+  font-family: "Love Ya Like A Sister", cursive;
+  display: flex;
+  justify-content: center;
 }
 
 .nameContainer {
-   background: white;
-   font-family: "Love Ya Like A Sister", cursive;
-
+  background: white;
+  font-family: "Love Ya Like A Sister", cursive;
 }
 
 .nameInput {
-   border: 0;
+  border: 0;
 }
 
 .signInButton {
-   background-color: #3B8EA5;
+  background-color: #3b8ea5;
 }
 
 .signIn {
-   background: linear-gradient(0deg, white 50%, #9c6d8f 50%);
-   font-family: "Love Ya Like A Sister", cursive;
-
+  background: linear-gradient(0deg, white 50%, #9c6d8f 50%);
+  font-family: "Love Ya Like A Sister", cursive;
 }
 
-.cloudSVG{
-     position: absolute;
+.cloudSVG {
+  position: absolute;
   top: 137%;
   left: 33%;
   transform: translateY(-50%) translateX(-50%);
   width: 30%;
   opacity: 1;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.loadingContainer img {
+  height: 100px;
 }

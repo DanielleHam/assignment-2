@@ -9,23 +9,26 @@ import { updateUser } from "./../api/apiCalls";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext";
 import ListTranslation from "./ListTranslation";
+import withAuth from "../hoc/withAuth";
 
 const Profile = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const { updateUserContext } = useContext(UserContext);
 
-  const [translations, setTranslations] = useState([]);
+  const [translations, setTranslations] = useState(
+    user.translations.slice(-10)
+  );
 
-  useEffect(() => {
-    //return to startPage if user is not logged in
-    if (!user.username) {
-      navigate("/");
-    } else {
-      // if logged in show only the last 10 translations
-      setTranslations(user.translations.slice(-10));
-    }
-  }, []);
+  // useEffect(() => {
+  //   //return to startPage if user is not logged in
+  //   if (!user.username) {
+  //     navigate("/");
+  //   } else {
+  //     // if logged in show only the last 10 translations
+
+  //   }
+  // }, []);
 
   const remove = () => {
     let copyUser = { ...user };
@@ -73,4 +76,4 @@ const Profile = () => {
     </Container>
   );
 };
-export default Profile;
+export default withAuth(Profile);
