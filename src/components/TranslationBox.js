@@ -12,8 +12,10 @@ const TranslationBox = ({ textInput, warning }) => {
     const list = [];
     setWarningText(warning);
     const regLetter = /^[a-zA-Z]+$/;
+    let previousLetter = "";
     letterArray.forEach((letter, index) => {
       if (letter.match(regLetter)) {
+        previousLetter = letter;
         list.push(
           <img
             key={letter + index}
@@ -25,12 +27,20 @@ const TranslationBox = ({ textInput, warning }) => {
             alt="letterImage"
           />
         );
-      } else if (letter === " ") {
+      } else if (
+        letter === " " &&
+        previousLetter !== " " &&
+        previousLetter !== ""
+      ) {
+        previousLetter = letter;
         list.push(
           <p key={letter + index} className="hiddenText">
             space
           </p>
         );
+      } else {
+        previousLetter = letter;
+        setWarningText("Don't spam space");
       }
     });
     return list;

@@ -14,6 +14,7 @@ const Translation = () => {
   const [translationInput, setTransInput] = useState("");
   const [finalInput, setFinalInput] = useState("");
   const [warning, setWarning] = useState("");
+  const [fixedInput, setFixedInput] = useState("");
 
   //return to startPage if user is not logged in
   useEffect(() => {
@@ -22,22 +23,56 @@ const Translation = () => {
     }
   });
 
+  const removeSpaceSpam = (inputString) => {
+    let previousLetter = "";
+    let fixedInputWithoutSpaceSpam = [];
+    let inputArray = Array.from(inputString);
+    inputArray.forEach((letter) => {
+      if (letter !== " ") {
+        previousLetter = letter;
+        fixedInputWithoutSpaceSpam.push(letter);
+      } else if (
+        letter === " " &&
+        previousLetter !== " " &&
+        previousLetter !== ""
+      ) {
+        previousLetter = letter;
+        fixedInputWithoutSpaceSpam.push(letter);
+      }
+    });
+    if (
+      fixedInputWithoutSpaceSpam[fixedInputWithoutSpaceSpam.length - 1] === " "
+    ) {
+      fixedInputWithoutSpaceSpam.pop();
+    }
+    return fixedInputWithoutSpaceSpam.join("");
+  };
   //Produce an image for each letter in the input and update database if the translation if unique
   const translateTextFunction = () => {
     const regLetter = /^[a-zA-Z ]+$/;
     if (translationInput.match(regLetter)) {
-      setWarning("");
       let checkIfTranslationExist = false;
+
+      setWarning("");
+      //setFixedInput(removeSpaceSpam(translationInput));
+      //if we don't want to save same translation with more space
+
+      let fix = removeSpaceSpam(translationInput);
+
+      //if we do want to save it
       setFinalInput(translationInput);
+
+      console.log(fix);
 
       const copyUser = { ...user };
       copyUser.translations.forEach((translationItem) => {
-        if (translationItem === translationInput) {
+        if (translationItem === fix) {
           checkIfTranslationExist = true;
         }
       });
+
       if (!checkIfTranslationExist) {
-        copyUser.translations.push(translationInput);
+        copyUser.translations.push(fix);
       }
       updateUserContext(copyUser);
       localStorage.setItem("user", JSON.stringify(copyUser));
