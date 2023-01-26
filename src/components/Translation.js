@@ -8,20 +8,14 @@ import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
 import TranslationBox from "./TranslationBox";
 
+import withAuth from "../hoc/withAuth";
+
 const Translation = () => {
   const navigate = useNavigate();
   const { user, updateUserContext } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
   const [finalInput, setFinalInput] = useState("");
   const [warning, setWarning] = useState("");
-
-  //return to startPage if user is not logged in
-
-  useEffect(() => {
-    if (!user.username) {
-      navigate("/");
-    }
-  });
 
   //removes all unnecessary spaces in the input
   const removeSpaceSpam = (inputString) => {
@@ -119,4 +113,4 @@ const Translation = () => {
     </main>
   );
 };
-export default Translation;
+export default withAuth(Translation);
