@@ -13,6 +13,7 @@ const Translation = () => {
   const { user, updateUserContext } = useContext(UserContext);
   const [translationInput, setTransInput] = useState("");
   const [finalInput, setFinalInput] = useState("");
+  const [warning, setWarning] = useState("");
 
   //return to startPage if user is not logged in
   useEffect(() => {
@@ -25,6 +26,7 @@ const Translation = () => {
   const translateTextFunction = () => {
     const regLetter = /^[a-zA-Z ]+$/;
     if (translationInput.match(regLetter)) {
+      setWarning("");
       let checkIfTranslationExist = false;
       setFinalInput(translationInput);
 
@@ -41,8 +43,9 @@ const Translation = () => {
       localStorage.setItem("user", JSON.stringify(copyUser));
       updateUser(user.id, { translations: user.translations });
     } else {
+      alert("invalid input");
       setFinalInput("");
-      alert("Only translates a-z letters");
+      setWarning("Only translates a-z letters");
     }
   };
   return (
@@ -69,7 +72,7 @@ const Translation = () => {
           </Button>{" "}
         </div>
       </div>
-      <TranslationBox textInput={finalInput} />
+      <TranslationBox textInput={finalInput} warning={warning} />
     </main>
   );
 };
