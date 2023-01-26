@@ -40,7 +40,7 @@ const TranslationBox = ({ textInput, warning }) => {
         );
       } else {
         previousLetter = letter;
-        setWarningText("Don't spam space");
+        //setWarningText("Don't spam space");
       }
     });
     return list;
