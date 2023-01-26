@@ -4,31 +4,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import { useNavigate } from "react-router-dom";
 import { updateUser } from "./../api/apiCalls";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../UserContext";
 import ListTranslation from "./ListTranslation";
 import withAuth from "../hoc/withAuth";
 
 const Profile = () => {
-  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const { updateUserContext } = useContext(UserContext);
 
   const [translations, setTranslations] = useState(
     user.translations.slice(-10)
   );
-
-  // useEffect(() => {
-  //   //return to startPage if user is not logged in
-  //   if (!user.username) {
-  //     navigate("/");
-  //   } else {
-  //     // if logged in show only the last 10 translations
-
-  //   }
-  // }, []);
 
   const remove = () => {
     let copyUser = { ...user };

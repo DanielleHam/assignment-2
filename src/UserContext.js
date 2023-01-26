@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { storageRead } from "./utils/storage";
 
 const UserContext = createContext();
 
@@ -7,7 +8,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user, setUser] = useState(storageRead("user"));
 
   const updateUserContext = (userInfo) => {
     setUser(userInfo);
