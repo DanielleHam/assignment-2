@@ -31,8 +31,6 @@ const TranslationBox = ({ textInput }) => {
             space
           </p>
         );
-      } else {
-        setWarningText("Only translates letters");
       }
     });
     return list;
@@ -46,10 +44,7 @@ const TranslationBox = ({ textInput }) => {
   return (
     <div className="imageContainer d-flex align-items-left rounded-5 shadow">
       {imageArray}
-      {}
-      <div className="bottomColor">
-        <>{warningText}</>
-      </div>
+      <div className="bottomColor"></div>
     </div>
   );
 };

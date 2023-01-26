@@ -23,21 +23,27 @@ const Translation = () => {
 
   //Produce an image for each letter in the input and update database if the translation if unique
   const translateTextFunction = () => {
-    let checkIfTranslationExist = false;
-    setFinalInput(translationInput);
+    const regLetter = /^[a-zA-Z ]+$/;
+    if (translationInput.match(regLetter)) {
+      let checkIfTranslationExist = false;
+      setFinalInput(translationInput);
 
-    const copyUser = { ...user };
-    copyUser.translations.forEach((translationItem) => {
-      if (translationItem === translationInput) {
-        checkIfTranslationExist = true;
+      const copyUser = { ...user };
+      copyUser.translations.forEach((translationItem) => {
+        if (translationItem === translationInput) {
+          checkIfTranslationExist = true;
+        }
+      });
+      if (!checkIfTranslationExist) {
+        copyUser.translations.push(translationInput);
       }
-    });
-    if (!checkIfTranslationExist) {
-      copyUser.translations.push(translationInput);
+      updateUserContext(copyUser);
+      localStorage.setItem("user", JSON.stringify(copyUser));
+      updateUser(user.id, { translations: user.translations });
+    } else {
+      setFinalInput("");
+      alert("Only translates a-z letters");
     }
-    updateUserContext(copyUser);
-    localStorage.setItem("user", JSON.stringify(copyUser));
-    updateUser(user.id, { translations: user.translations });
   };
   return (
     <main>
