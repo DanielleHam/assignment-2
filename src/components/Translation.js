@@ -38,6 +38,8 @@ const Translation = () => {
       ) {
         previousLetter = letter;
         fixedInputWithoutSpaceSpam.push(letter);
+      } else {
+        setWarning("Don't spam space");
       }
     });
     if (
@@ -49,8 +51,9 @@ const Translation = () => {
   };
   //Produce an image for each letter in the input and update database if the translation if unique
   const translateTextFunction = () => {
-    const regLetter = /^[a-zA-Z ]+$/;
-    if (translationInput.match(regLetter)) {
+    const regLetterAndSpace = /^[a-zA-Z ]+$/;
+    const regLetter = /[a-zA-Z]/;
+    if (translationInput.match(regLetterAndSpace)) {
       let checkIfTranslationExist = false;
 
       setWarning("");
@@ -59,10 +62,14 @@ const Translation = () => {
 
       let fix = removeSpaceSpam(translationInput);
 
+      if (!regLetter.test(fix)) {
+        console.log("entered test");
+        setFinalInput("");
+        setWarning("Enter more than just space");
+        checkIfTranslationExist = true;
+      }
       //if we do want to save it
       setFinalInput(translationInput);
-
-      console.log(fix);
 
       const copyUser = { ...user };
       copyUser.translations.forEach((translationItem) => {
