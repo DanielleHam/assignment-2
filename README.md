@@ -51,5 +51,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Made by
 Danielle Hamrin
+
 Keman Nguyen
+
 Mattias Smedman
