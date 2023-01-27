@@ -1,6 +1,6 @@
 # Lost in Translation
 
-Lost in translation is a page for translation words into sign language.
+Lost in translation is a page for translation words into sign language. 
 
 ## Running the project
 
@@ -30,6 +30,12 @@ A deployed version of the project can be found [here](https://assignment-2-tau.v
 <br>
 <br>
 
+## Component Tree
+Component Tree can be found [here](https://www.figma.com/file/NdHV6y97burySGxUQTfi0R/LostInTranslationComponentTree?node-id=0%3A1&t=Y9H3Dl0DLJnN18vX-0)
+<img src="https://i.imgur.com/ySN15t9.png">
+
+Wireframe can be found [here](https://www.figma.com/file/4jW95tN6orzIDUbkNFeAzV/assignment-2-Experis?node-id=0%3A1&t=nbmmtiMWNxXKpSx1-1)
+
 ## Written Using
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -42,3 +48,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [Javascript](https://getbootstrap.com/)
 
 [Github](https://github.com/)
+
+## Made by
+Danielle Hamrin
+
+Keman Nguyen
+
+Mattias Smedman
